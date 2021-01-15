@@ -1,6 +1,6 @@
 """
 [0] Information
-‣	Capital is an Shirt/Pant/Face/Audio downloader. You may skid off the code or resell it (I wouldn't recommend doing this).
+‣ Capital is an Shirt/Pant/Face/Audio downloader. You may skid off the code or resell it (I wouldn't recommend doing this).
 ‣ Capital is completely proxyless as there is no imposed ratelimit over any of the endpoints used.
 ‣ Capital is completely free to use and is open sourced.
 ‣ Below this comment, you can find the metadata for this project.
@@ -63,7 +63,9 @@ if _choice != "1" and _choice != "2" and _choice != "3":
 	sys.exit()
 
 try:
-	_thread_count = int(util.ask(f"How many threads do you wish to use? Recommended: 30 threads. [0-100] "))
+	_thread_count = int(util.ask(f"How many threads do you wish to use? Recommended: 30 threads. [1-100] "))
+	if _thread_count == 0:
+		raise ZeroDivisionError
 except:
 	util.warning("Error! You specified an invalid amount of threads (not an integer).")
 	util.throw_error("Invalid thread amount specified, abort program.")
