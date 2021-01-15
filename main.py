@@ -10,11 +10,12 @@
 ‣ You may modify the code so it's usable as a module.
 """
 
+__todo__ = ["Push new option handler"]
 __author__ = "Stellaris#0001"
 __version__ = "1.0.1"
 __maintainer__ = "Stellaris#0001"
 __license__ = "MIT"
-global _final
+_final = None
 
 """
 [1] Imports
@@ -28,12 +29,19 @@ import threading
 import sys
 import imghdr
 import time
+import colorama
 from bs4 import BeautifulSoup
 import io
 
 """
 [2] Setup
 """
+
+if os.path.exists('output') == False:
+	os.mkdir('output')
+if os.path.exists('ids.txt') == False:
+	with open("ids.txt", "w") as f:
+		f.write(" ")
 
 _stream = True
 _final = []
@@ -134,6 +142,6 @@ for tnum in range(1, _thread_count + 1):
 while len(_id_list) != 0:
 	pass
 
-time.sleep(1)
+time.sleep(1) # Giving the thread some time to process as the ID is removed before the worker is done with the task.
 for _c_thread in _thread_list:
 	_c_thread.join()
