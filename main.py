@@ -1,6 +1,6 @@
 """
 [0] Information
-‣	Capital is an Shirt/Pant/Face/Audio downloader. You may skid off the code or resell it (I wouldn't recommend doing this).
+‣ Capital is an Shirt/Pant/Face/Audio downloader. You may skid off the code or resell it (I wouldn't recommend doing this).
 ‣ Capital is completely proxyless as there is no imposed ratelimit over any of the endpoints used.
 ‣ Capital is completely free to use and is open sourced.
 ‣ Below this comment, you can find the metadata for this project.
