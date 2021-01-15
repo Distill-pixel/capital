@@ -30,6 +30,6 @@ $ python3 main.py
 ‣ Run python3 main.py
 ```
 # Note
-This project is poorly made as there was not a lot of time spent on it, but it works nevertheless. It should perform decently and finish checking ID's fast. It all depends on the amount though. Errors are written to errors.txt. All built files are for the x64 architecture, for running it on ARM64/PowerPC/x86/ARMHF etc. architectures, you will have to run it from source.
+This project is poorly made as there was not a lot of time spent on it, but it works nevertheless. It should perform decently and finish checking ID's fast. It all depends on the amount though. Errors are written to errors.txt. All binaries are for the amd64 architecture, for running it on ARM64/PowerPC/x86/ARMHF etc. architectures, you will have to run it from source.
 # Credits
 Felix for helping me compile it for Windows (I don't have a Windows machine) and Shidposter for the idea.
