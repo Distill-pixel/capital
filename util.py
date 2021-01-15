@@ -1,4 +1,6 @@
 import datetime
+from colorama import init
+init()
 
 class Colors:
 
