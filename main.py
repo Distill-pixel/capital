@@ -1,6 +1,6 @@
 """
 [0] Information
-‣ Capital is an Shirt/Pant/Face/Audio downloader. You may skid off the code or resell it (I wouldn't recommend doing this).
+‣	Capital is an Shirt/Pant/Face/Audio downloader. You may skid off the code or resell it (I wouldn't recommend doing this).
 ‣ Capital is completely proxyless as there is no imposed ratelimit over any of the endpoints used.
 ‣ Capital is completely free to use and is open sourced.
 ‣ Below this comment, you can find the metadata for this project.
@@ -20,7 +20,7 @@ global _final
 [1] Imports
 """
 
-import faster_than_requests as requests
+import requests
 import xmltodict
 import itertools
 import util
@@ -69,13 +69,14 @@ def worker(thread):
 		for _id in _id_list:
 			_id_list.remove(_id)
 			util.info(f"[T{thread}] Processing ID: {_id}.")
-			_xml = requests.get(f"https://assetdelivery.roblox.com/v1/asset?id={_id}", http_headers = [("Requester", "Client")])["body"]
-			if _xml == '{"errors":[{"code":404,"message":"Request asset was not found"}]}':
+			_xml = requests.get(f"https://assetdelivery.roblox.com/v1/asset?id={_id}", headers = {"Requester": "Client"}).text
+			if _xml == '{"errors":[{"code":404,"message":"Request asset was not found"}]}' or _xml == '{"errors":[{"code":409,"message":"User is not authorized to access Asset."}]}':
 				util.throw_error(f"Error in fetching asset ID {_id}. Response: {_xml}")
 				util.warning(f"[T{thread}] An error has occured: AssetID not found")
 			else:
+				print(_xml)
 				_new_id = xmltodict.parse(_xml)["roblox"]["Item"]["Properties"]["Content"]["url"].replace("http://www.roblox.com/asset/?id=", "")
-				_output = requests.get(f"https://assetdelivery.roblox.com/v1/asset?id={_new_id}", http_headers = [("Requester", "Client")])["body"]
+				_output = requests.get(f"https://assetdelivery.roblox.com/v1/asset?id={_new_id}", headers = {"Requester" : "Client"}).content
 				_output_ramdisk = imghdr.what(io.BytesIO(_output))
 				with open(f"output/{_new_id}.{_output_ramdisk}", "wb") as f:
 					f.write(_output)
@@ -85,8 +86,8 @@ def worker(thread):
 		for _id in _id_list:
 			_id_list.remove(_id)
 			util.info(f"[T{thread}] Processing ID: {_id}.")
-			_output = requests.get(f"https://assetdelivery.roblox.com/v1/asset?id={_id}", http_headers = [("Requester", "Client")])["body"]
-			if _output == '{"errors":[{"code":404,"message":"Request asset was not found"}]}':
+			_output = requests.get(f"https://assetdelivery.roblox.com/v1/asset?id={_id}", headers = {"Requester" : "Client"})
+			if _output.text == '{"errors":[{"code":404,"message":"Request asset was not found"}]}' or '{"errors":[{"code":409,"message":"User is not authorized to access Asset."}]}':
 				util.throw_error(f"Error in fetching asset ID {_id}. Response: {_output}")
 				util.warning(f"[T{thread}] An error has occured: AssetID not found")
 			elif str(type(_output)) == "<class 'str'>":
@@ -94,12 +95,12 @@ def worker(thread):
 				util.warning(f"[T{thread}] An error has occured: Invalid choice for specified asset.")
 			else:
 				with open(f"output/{_id}.rbxm", "wb") as f:
-					f.write(_output)
+					f.write(_output.content)
 				util.info(f"[T{thread}] Done downloading asset ID: {_id}.")
 	elif _choice == "3":
 		for _id in _id_list:
 			_id_list.remove(_id)
-			soup = BeautifulSoup(requests.get("https://www.roblox.com/library/{_id}?Category=Audio")["body"], "html.parser")
+			soup = BeautifulSoup(requests.get("https://www.roblox.com/library/{_id}?Category=Audio").text, "html.parser")
 			util.info(f"[T{thread}] Processing ID: {_id}.")
 			success = False
 			
@@ -115,7 +116,7 @@ def worker(thread):
 				util.throw_error(f"Error in fetching ID: {_id}.")
 				util.warning(f"[T{thread}] An error has occured: AssetID not found")
 			else:
-				audio = requests.get(_final_song)["body"]
+				audio = requests.get(_final_song).text
 				ramfile = io.BytesIO(audio)
 				with open(f"output/{_id}.{imghdr.what(audio)}", "wb") as f:
 					f.write(audio)
