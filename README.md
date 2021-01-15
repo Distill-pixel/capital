@@ -25,9 +25,9 @@ $ python3 main.py
 ```
 ‣ Install Python3 from https://python.org (>3.6)
 ‣ Download the repo with git or download the zip file and extract it in a folder.
-‣ Install modules with `pip3 install -r requirements.min.txt`
+‣ Install modules with pip3 install -r requirements.min.txt
 ‣ Edit the ids.txt file with notepad.
-‣ Run `python3 main.py`
+‣ Run python3 main.py
 ```
 # Note
 This project is poorly made as there was not a lot of time spent on it, but it works nevertheless. It should perform decently and finish checking ID's fast. It all depends on the amount though. Errors are written to errors.txt. All built files are for the x64 architecture, for running it on ARM64/PowerPC/x86/ARMHF etc. architectures, you will have to run it from source.
