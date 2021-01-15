@@ -32,6 +32,7 @@ import time
 import colorama
 from bs4 import BeautifulSoup
 import io
+import os
 
 """
 [2] Setup
