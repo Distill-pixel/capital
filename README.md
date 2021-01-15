@@ -9,15 +9,6 @@ Capital is a completely proxyless Roblox asset downloader. You can download Deca
 ‣ Choose the amount of threads.
 ‣ All done! It will now check all the ID's specified.
 ```
-# Instructions [LINUX]
-```
-‣ Download the ZIP file, then extract it to a location you wish to.
-‣ Edit the "ids.txt" file with any text editor (Nano etc.). Paste all your asset ID's here with a li nebreak.
-‣ Execute the "capital" file. You can do this by running `./capital` in the directory.
-‣ Choose a mode.
-‣ Choose the amount of threads.
-‣ All done! It will now check all the ID's specified.
-```
 # Run from source on Linux
 ```bash
 # You need to have python3 installed by default.
